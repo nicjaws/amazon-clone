@@ -4,9 +4,8 @@ import Header from './Header';
 
 function App() {
   return (
-    // BEM convection styling
+    // BEM convention styling
     <div className="app">
-      <h1>We are going to build Amazon Clone </h1>
       <Header />
       {/* Home */}
     </div>
