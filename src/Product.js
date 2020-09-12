@@ -16,7 +16,7 @@ function Product({title, image, price, rating}) {
             ))}
           </div>
       </div>
-      <img src="https://cdn.grupoelcorteingles.es/SGFM/dctm/MEDIA03/201712/01/00106524174718____2__640x640.jpg" alt=""   
+      <img src={image} alt=""   
       />
       <button>Add to Basket</button>
     </div>

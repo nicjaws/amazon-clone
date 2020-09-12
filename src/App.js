@@ -2,14 +2,21 @@ import React from 'react';
 import './App.css';
 import Header from './Header';
 import Home from './Home';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-    // BEM convention styling
-    <div className="app">
-      <Header />
-      <Home /> 
-    </div>
+    <Router>
+      // BEM convention styling
+      <div className="app">
+        <Switch>
+          <Route path="/">
+            <Header />
+            <Home /> 
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
