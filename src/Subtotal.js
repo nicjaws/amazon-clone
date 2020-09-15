@@ -9,6 +9,7 @@ function Subtotal() {
         renderText={(value) => (
           <>
             <p>
+            {/* Part of the homework */}
             Subtotal (0 items):
             <strong>0</strong>
             </p>
