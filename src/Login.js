@@ -25,7 +25,7 @@ function Login() {
           By signing-in you agree to the AMAZON FAKE CLONE Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our interest-based Ads notice.
         </p>
 
-        <button>Create your amazon account</button>
+        <button>Create your Amazon Account</button>
       </div>
     </div>
   )
