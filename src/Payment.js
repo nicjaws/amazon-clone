@@ -41,7 +41,12 @@ function Payment() {
 
         {/* payment method */}
         <div className='payment__section'>
-          
+          <div className="payment__title">
+            <h3>Payment method</h3>
+          </div>
+          <div className="payment__details">
+              {/* stripe */}
+          </div>
         </div>
       </div>
     </div>
