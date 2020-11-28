@@ -1,6 +1,4 @@
-Amazon Clone with react, with auth (login-register) via Firebase. Checkout box...etc
-
-DEMO Hosting URL (firebase deploy): https://clone-3c259.web.app
+Amazon Clone with react, with auth (login-register) via Firebase, Checkout box, stripe payments...etc
 
 ![ScreenShot](amazon1.png)
 ![ScreenShot](amazon2.png)
