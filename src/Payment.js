@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './Payment.css'
 import { useStateValue } from './StateProvider';
 import CheckoutProduct from './CheckoutProduct';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { getBasketTotal } from './reducer';
 import CurrencyFormat from 'react-currency-format';
+import Axios from './axios';
 
 
 
 function Payment() {
   const [{basket, user}, dispatch] = useStateValue();
+  const history = useHistory();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -20,11 +22,39 @@ function Payment() {
 
   const [error, setError] = useState(null);
   const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+
+  useEffect(() => {
+// generate the stripe secret which allows us to charge a customer
+  const getClientSecret = async () => {
+    const response = await Axios({
+        method: 'post',
+        // Stripe expects the total in a currencies subunits
+        url: `/payments/create?total=${getBasketTotal(basket) * 100 }`
+    }); 
+    setClientSecret(response.data.clientSecret)
+  }
+  getClientSecret();
+  }, [basket])
 
 
-
-  const handleSubmit = e => {
+  const handleSubmit = async (event) => {
     // all the stripe stuff
+    event.preventDefault();
+    setProcessing(true);
+
+   const payload = await stripe.confirmCardPayment(clientSecret, {
+     card: elements.getElement(CardElement)
+   }).then(({ paymentIntent }) => {
+     //paymentIntent = payment confirmation 
+     setSucceeded(true);
+     setError(null);
+     setProcessing(false);
+
+     history.replace('/orders')
+   }) 
+
+
   }
 
   const handleChange = event => {
@@ -98,6 +128,8 @@ function Payment() {
                    </span>
                  </button>
                 </div>
+                {/* Errors */}
+                {error && <div>{error}</div>}
               </form>
           </div>
         </div>
